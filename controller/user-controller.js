@@ -13,7 +13,7 @@ var transporter = nodemailer.createTransport({
 
 function createToken(user) {
   return jwt.sign(
-    user,
+    { id: user.id, email: user.email, full_name: user.full_name,fake_name:user.fake_name },
     config.jwtSecret,
     {
       expiresIn: 86400 // 86400 expires in 24 hours
