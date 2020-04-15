@@ -1,6 +1,5 @@
 var User = require("../models/user");
 var Message = require("../models/message");
-var Group = require("../models/group");
 var jwt = require("jsonwebtoken");
 var config = require("../config/config");
 var nodemailer = require('nodemailer');
