@@ -19,10 +19,6 @@ var UserSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  gender: {
-    type: String,
-    required: true
-  },
   isActivated: { type: Boolean, default: false }
 
 });
