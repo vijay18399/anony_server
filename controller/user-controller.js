@@ -69,25 +69,28 @@ exports.loginUser = (req, res) => {
     if (!user) {
       return res.status(400).json({ msg: "The email does not have an account" });
     }
-
-    user.comparePassword(req.body.password, (err, isMatch) => {
-      if (isMatch && !err) {
-        if(user.isActivated){
-          return res.status(200).json({
-            token: createToken(user)
-          });
+    else{
+      User.findOne({ email: req.body.email ,password : req.body.password }, (err, data) => {
+        if (data) {
+          if(user.isActivated){
+            return res.status(200).json({
+              token: createToken(user)
+            });
+          }
+          else{
+            return res.status(400).json({ msg: "Account not activated please check your email" });
+          }
+        
+        } else {
+          return res
+            .status(400)
+            .json({ msg: "Either  email or  password is wrong ." });
         }
-        else{
-          return res.status(400).json({ msg: "Account not activated please check youe email" });
-        }
-      
-      } else {
-        return res
-          .status(400)
-          .json({ msg: " email and password don't match." });
-      }
-    });
+      });
+    }
   });
+    
+
 };
 
 exports.Users = (req, res) => {
