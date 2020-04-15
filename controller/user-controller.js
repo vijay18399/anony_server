@@ -40,7 +40,7 @@ exports.registerUser = (req, res) => {
           from: 'edumonker@gmail.com', // sender address
           to: req.body.email, // list of receivers
           subject: 'Activation of Account', // Subject line
-          html: '<center><h1>please <a href="https://fikarmat.herokuapp.com/activate/'+req.body.email+'">click here </a> to activate</h1></center>',// plain text body
+          html: '<center><h1>please <a href="https://fikarmat.herokuapp.com/api/activate/'+req.body.email+'">click here </a> to activate</h1></center>',// plain text body
         };
         transporter.sendMail(mailOptions, function (err, info) {
           if(err)
